@@ -19,33 +19,33 @@ The differences between HTTP 1.1 and HTTP 2
 ===========================================
 
 -------------------------------------------------------------------------------------------------:
-Feature         |       HTTP/1.1                    |      HTTP/2		                 		 |
+Feature         |       HTTP/1.1                    |      HTTP/2		                 |
 ----------------|-----------------------------------|--------------------------------------------|
 Multiplexing    | No multiplexing; requests are     | Supports multiplexing; multiple requests   |
                 | sent serially over a single       | can be sent and responses received in      |
-		        | connection.	                    | parallel over a single connection.         |
+	        | connection.	                    | parallel over a single connection.         |
 ________________|___________________________________|____________________________________________|
-		        | Headers are sent as plain text,   | Headers are compressed using HPACK,   	 |
-Header 		    | leading to redundancy and larger  | reducing overhead and improving            |
+	        | Headers are sent as plain text,   | Headers are compressed using HPACK,   	 |
+Header 		| leading to redundancy and larger  | reducing overhead and improving            |
 Compression  	| overhead.                         | performance.                               |
 ________________|___________________________________|____________________________________________|
 Binary Protocol	| No, it uses plain text for both   | Yes, HTTP/2 uses a binary framing layer    |
-		        | headers and data.                 | to encode both headers and data.		     |
+	        | headers and data.                 | to encode both headers and data.  	 |
 ________________|___________________________________|____________________________________________|
-Server Push	    | Not supported.	                | Supports server push; the server can       |
-		        |                                   | send additional responses (resources)      |
-		        |                                   | to the client without explicit requests.   |
+Server Push     | Not supported.	            | Supports server push; the server can       |
+	        |                                   | send additional responses (resources)      |
+	        |                                   | to the client without explicit requests.   |
 ________________|___________________________________|____________________________________________|
-Stream 		    | Not supported; all requests are   | Supports stream prioritization; requests 	 |
+Stream 	        | Not supported; all requests are   | Supports stream prioritization; requests 	 |
 Prioritization	| equally prioritized.              | can be assigned dependencies and priorities| 
-		        |                                   | allowing more critical resources to be     |
-		        |				                    | delivered faster.                          |
+	        |                                   | allowing more critical resources to be     |
+	        |		                    | delivered faster.                          |
 ________________|___________________________________|____________________________________________|
 Connection  	| Requires multiple connections for | Requires a single connection per origin, 	 |
-Handling	    | parallelism, leading to higher    | reducing resource usage and improving      |
-		        | resource usage.                   | latency.                                   |
+Handling	| parallelism, leading to higher    | reducing resource usage and improving      |
+		| resource usage.                   | latency.                                   |
 ________________|___________________________________|____________________________________________|
 Performance     | Limited by latency and serial     | Improved performance due to multiplexing,  |
-	        	| request handling.	  	            | header compression, and server push.       |
-		        |                                   |                                            |
+	        | request handling.  	            | header compression, and server push.       |
+		|                                   |                                            |
 -------------------------------------------------------------------------------------------------:
